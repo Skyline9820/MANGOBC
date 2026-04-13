@@ -89,6 +89,9 @@
         .section-title { font-family: 'Montserrat'; font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; color: var(--dark); margin-bottom: 40px; text-transform: uppercase; text-align: center; line-height: 1.1; }
         .section-title span { color: var(--mango); }
 
+        /* DIVISOR DE SECCIONES INTERNAS */
+        .section-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); margin: 60px 0; }
+
         /* 1. HERO CON DOS COLUMNAS Y FORMULARIO (AJUSTADO A 1 VISTA) */
         .hero-distribuidores { min-height: 100vh; display: flex; align-items: center; position: relative; background: var(--dark); padding: 90px 5% 150px; overflow: hidden; }
         .hero-video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
@@ -458,7 +461,7 @@
     <section class="hero-distribuidores" id="inicio">
         <div class="hero-video-wrapper">
             <video autoplay muted loop playsinline>
-                <source src="distribuidor loop.mp4" type="video/mp4">
+                <source src="DISTRIBUIDOR LOOP.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
         </div>
@@ -583,8 +586,191 @@
     </section>
 
     <section class="seccion-kits" id="kits">
-        <h2 class="section-title fade-in">KITS DE <span>DISTRIBUCIÓN</span></h2>
         
+        <h2 class="section-title fade-in">KITS PARA <span>EMPRENDEDOR</span></h2>
+        <div class="grid-4-marcas fade-in">
+            <div class="kit-card">
+                <h3 class="kit-card-title">DELI <span>BARRAS</span></h3>
+                <div class="inner-carousel-container" data-brand="Deli Barras">
+                    <div class="inner-carousel-track">
+                        <div class="inner-slide" data-kitname="Emprendedor" style="background-image: url('emprendedor-delikit.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 360 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Emprendedor</div>
+                                    <div class="slide-price-badge">$5,184.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Delibarras Tradicional (2 cajas / 240 pz)</li>
+                                    <li>Delibarras Yogurt (1 caja / 120 pz)</li>
+                                    <li>2 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-slide" data-kitname="Comercial" style="background-image: url('comercial-delikit.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 480 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Comercial</div>
+                                    <div class="slide-price-badge">$6,912.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Delibarras Tradicional (2 cajas / 240 pz)</li>
+                                    <li>Delibarras Yogurt (2 cajas / 240 pz)</li>
+                                    <li>2 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-arrows">
+                    <button class="arrow-btn btn-prev">❮</button>
+                    <button class="arrow-btn btn-next">❯</button>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas">Saber más de este paquete</button>
+                </div>
+            </div>
+
+            <div class="kit-card">
+                <h3 class="kit-card-title">SABOR <span>MÍO</span></h3>
+                <div class="inner-carousel-container" data-brand="Sabor Mío">
+                    <div class="inner-carousel-track">
+                        <div class="inner-slide" data-kitname="Emprendedor" style="background-image: url('emprendedor-sabormio.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 352 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Emprendedor</div>
+                                    <div class="slide-price-badge">$5,172.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Empanizador Clásico (2 cajas / 112 pz)</li>
+                                    <li>Empanizador Saborizado (2 cajas / 120 pz)</li>
+                                    <li>Pan Cruji (2 cajas / 120 pz)</li>
+                                    <li>2 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-slide" data-kitname="Comercial" style="background-image: url('SM KIT.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 468 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Comercial</div>
+                                    <div class="slide-price-badge">$6,912.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Empanizador Clásico (3 cajas / 168 pz)</li>
+                                    <li>Empanizador Saborizado (3 cajas / 180 pz)</li>
+                                    <li>Pan Cruji (2 cajas / 120 pz)</li>
+                                    <li> 2 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-arrows">
+                    <button class="arrow-btn btn-prev">❮</button>
+                    <button class="arrow-btn btn-next">❯</button>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas">Saber más de este paquete</button>
+                </div>
+            </div>
+
+            <div class="kit-card">
+                <h3 class="kit-card-title"><span>CAMPESINAS</span></h3>
+                <div class="inner-carousel-container" data-brand="Campesinas">
+                    <div class="inner-carousel-track">
+                        <div class="inner-slide" data-kitname="Emprendedor" style="background-image: url('CAMPESINAS-KITS-WEB.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 420 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Emprendedor</div>
+                                    <div class="slide-price-badge">$5,112.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Laminitas (2 cajas / 180 pz)</li>
+                                    <li>Besos (2 cajas / 144 pz)</li>
+                                    <li>Surtipack (1 caja / 96 pz)</li>
+                                    <li>3 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-slide" data-kitname="Comercial" style="background-image: url('CAMPESINAS-KITS-3.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 516 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Comercial</div>
+                                    <div class="slide-price-badge">$6,379.20</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Laminitas (2 cajas / 180 pz)</li>
+                                    <li>Besos (2 cajas / 144 pz)</li>
+                                    <li>Surtipack (2 cajas / 192 pz)</li>
+                                    <li>3 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-arrows">
+                    <button class="arrow-btn btn-prev">❮</button>
+                    <button class="arrow-btn btn-next">❯</button>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas">Saber más de este paquete</button>
+                </div>
+            </div>
+
+            <div class="kit-card">
+                <h3 class="kit-card-title">NANNÁ <span></span></h3>
+                <div class="inner-carousel-container" data-brand="Nanná">
+                    <div class="inner-carousel-track">
+                        <div class="inner-slide" data-kitname="Emprendedor" style="background-image: url('nannaemprendedor.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 436 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Emprendedor</div>
+                                    <div class="slide-price-badge">$4,734.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Muffin (2 cajas / 96 pz)</li>
+                                    <li>Besos de nuez (2 cajas / 240 pz)</li>
+                                    <li>Waffle (1 caja / 100 pz)</li>
+                                    <li>1 caja de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-slide" data-kitname="Comercial" style="background-image: url('nannacomercial.jpg');">
+                            <div class="slide-content">
+                                <div class="slide-pieces">📦 684 Piezas</div>
+                                <div class="title-price-row">
+                                    <div class="slide-name">Comercial</div>
+                                    <div class="slide-price-badge">$7,296.00</div>
+                                </div>
+                                <ul class="slide-features">
+                                    <li>Muffin (3 cajas / 144 pz)</li>
+                                    <li>Besos de nuez (2 cajas / 240 pz)</li>
+                                    <li>Waffle (3 cajas / 300 pz)</li>
+                                    <li>3 cajas de exhibidores (De regalo)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-arrows">
+                    <button class="arrow-btn btn-prev">❮</button>
+                    <button class="arrow-btn btn-next">❯</button>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas">Saber más de este paquete</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider fade-in"></div>
+
+        <h2 class="section-title fade-in">KITS PARA <span>DISTRIBUIDOR</span></h2>
         <div class="grid-4-marcas fade-in">
             <div class="kit-card">
                 <h3 class="kit-card-title">DELI <span>BARRAS</span></h3>
