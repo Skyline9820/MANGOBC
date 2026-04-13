@@ -204,14 +204,23 @@
         .step h4 { font-family: 'Montserrat'; font-weight: 700; font-size: 1rem; color: var(--dark); margin-bottom: 8px; text-transform: uppercase;}
         .step p { color: #666; font-size: 0.85rem; line-height: 1.5;}
 
-        /* 4. KITS DE NIVELES (CARRUSELES DINÁMICOS) */
+        /* 4. KITS DE NIVELES Y MIXTOS */
         .seccion-kits { background-color: #000000; padding: 100px 5%; position: relative; z-index: 2; }
         .seccion-kits .section-title { color: var(--white); margin-bottom: 60px; }
-
+        
+        /* Grids para Kits de 4 Marcas */
         .grid-4-marcas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+        /* Grids para Kits Mixtos (hasta 3 columnas) */
+        .grid-3-mixtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); gap: 30px; width: 100%; max-width: 1200px; margin: 0 auto; justify-content: center; }
 
         .kit-card { background: #1C1C1C; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; position: relative; overflow: hidden; transition: border-color 0.4s, transform 0.4s; min-height: 520px; padding: 0; text-align: left; }
         .kit-card:hover { border-color: var(--mango); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(253, 234, 20, 0.1); }
+
+        /* Variación para Tarjetas Mixtas */
+        .kit-card.mixto { padding: 80px 25px 95px 25px; background-size: cover; background-position: center; border: none; }
+        .kit-card.mixto::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.3) 100%); z-index:1; pointer-events: none;}
+        .kit-card.mixto .slide-content { align-items: center; text-align: center; justify-content: flex-end; height: 100%; }
 
         .kit-card-title { position: absolute; top: 25px; left: 0; width: 100%; text-align: center; font-size: 1.6rem; font-family: 'Montserrat'; font-weight: 900; color: var(--white); text-transform: uppercase; letter-spacing: 2px; z-index: 10; text-shadow: 0 4px 15px rgba(0,0,0,0.8); pointer-events: none; margin: 0;}
         .kit-card-title span { color: var(--mango); }
@@ -370,6 +379,7 @@
             .step p { font-size: 0.75rem; line-height: 1.3;}
 
             .grid-4-marcas { grid-template-columns: 1fr; gap: 30px; }
+            .grid-3-mixtos { grid-template-columns: 1fr; } /* Responsivo para los Mixtos */
             .kit-card { min-height: 450px; }
             .pkg-modal-body { padding: 20px 25px 40px 25px; }
 
@@ -491,6 +501,12 @@
                                     <option value="Mango Logistics">Mango Logistics</option>
                                 </select>
                             </div>
+                            
+                            <div class="input-group full-width">
+                                <label for="hero-paquete">Paquete de interés</label>
+                                <input type="text" id="hero-paquete" placeholder="Selecciona un paquete del catálogo..." readonly style="background-color: #f9f9f9; cursor: not-allowed;" required>
+                            </div>
+
                             <div class="input-group">
                                 <label for="hero-nombre">Nombre</label>
                                 <input type="text" id="hero-nombre" placeholder="Tu nombre" required>
@@ -589,7 +605,7 @@
         
         <h2 class="section-title fade-in">KITS PARA <span>EMPRENDEDOR</span></h2>
         <div class="grid-4-marcas fade-in">
-            <div class="kit-card">
+            <div class="kit-card" data-type="Emprendimiento (Kits)">
                 <h3 class="kit-card-title">DELI <span>BARRAS</span></h3>
                 <div class="inner-carousel-container" data-brand="Deli Barras">
                     <div class="inner-carousel-track">
@@ -632,7 +648,7 @@
                 </div>
             </div>
 
-            <div class="kit-card">
+            <div class="kit-card" data-type="Emprendimiento (Kits)">
                 <h3 class="kit-card-title">SABOR <span>MÍO</span></h3>
                 <div class="inner-carousel-container" data-brand="Sabor Mío">
                     <div class="inner-carousel-track">
@@ -677,7 +693,7 @@
                 </div>
             </div>
 
-            <div class="kit-card">
+            <div class="kit-card" data-type="Emprendimiento (Kits)">
                 <h3 class="kit-card-title"><span>CAMPESINAS</span></h3>
                 <div class="inner-carousel-container" data-brand="Campesinas">
                     <div class="inner-carousel-track">
@@ -722,7 +738,7 @@
                 </div>
             </div>
 
-            <div class="kit-card">
+            <div class="kit-card" data-type="Emprendimiento (Kits)">
                 <h3 class="kit-card-title">NANNÁ <span></span></h3>
                 <div class="inner-carousel-container" data-brand="Nanná">
                     <div class="inner-carousel-track">
@@ -768,11 +784,46 @@
             </div>
         </div>
 
+        <div class="fade-in" style="text-align: center; margin: 60px 0 30px;">
+            <h2 class="section-title" style="margin-bottom: 10px; font-size: clamp(1.8rem, 4vw, 3rem);">KITS MIXTOS <span>EMPRENDEDOR</span></h2>
+            <p style="color: #AAA; font-size: 1.1rem;">Combina todo el poder de nuestras marcas en un solo envío.</p>
+        </div>
+
+        <div class="grid-3-mixtos fade-in">
+            <div class="kit-card mixto" data-type="Emprendimiento (Kits)" style="background-image: url('mix-2.jpg');" data-brand="Paquetes Mixtos" data-kitname="Nivel Entrada">
+                <div class="slide-content">
+                    <p style="color: #AAA; font-size: 0.9rem; margin-bottom: 20px;"></p>
+                    <h3 class="kit-card-title" style="position:relative; top:0; margin-bottom:15px;">NIVEL <span>ENTRADA</span></h3>
+                    <ul class="slide-features">
+                        <li><strong>Opción A ($5,292.00):</strong> Campesinas Laminitas + Sabor Mio Pan Crujy + Nanná Muffin</li>
+                        <li><strong>Opción B ($6,372.00):</strong> Delibarras Yogurt + Sabor Mio Pan Crujy + Nanná Muffin</li>
+                    </ul>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas mix-btn">Saber más</button>
+                </div>
+            </div>
+
+            <div class="kit-card mixto" data-type="Emprendimiento (Kits)" style="background-image: url('mix-3.jpg');" data-brand="Paquetes Mixtos" data-kitname="Nivel Crecimiento">
+                <div class="slide-content">
+                    <p style="color: #AAA; font-size: 0.9rem; margin-bottom: 20px;"></p>
+                    <h3 class="kit-card-title" style="position:relative; top:0; margin-bottom:15px;">NIVEL <span>CRECIMIENTO</span></h3>
+                    <ul class="slide-features">
+                        <li><strong>Opción A ($8,736.00):</strong> Delibarras Tradicional + Campesinas Enjambre Choc. + Sabor Mio Empanizador</li>
+                        <li><strong>Opción B ($8,564.80):</strong> Delibarras Yogurt + Nanná Waffle + Campesinas Besos Choc. + Sabor Mio Pan Crujy</li>
+                    </ul>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas mix-btn">Saber más</button>
+                </div>
+            </div>
+        </div>
+
         <div class="section-divider fade-in"></div>
 
         <h2 class="section-title fade-in">KITS PARA <span>DISTRIBUIDOR</span></h2>
         <div class="grid-4-marcas fade-in">
-            <div class="kit-card">
+            <div class="kit-card" data-type="Ser Distribuidor (B2B)">
                 <h3 class="kit-card-title">DELI <span>BARRAS</span></h3>
                 <div class="inner-carousel-container" data-brand="Deli Barras">
                     <div class="inner-carousel-track">
@@ -815,7 +866,7 @@
                 </div>
             </div>
 
-            <div class="kit-card">
+            <div class="kit-card" data-type="Ser Distribuidor (B2B)">
                 <h3 class="kit-card-title">SABOR <span>MÍO</span></h3>
                 <div class="inner-carousel-container" data-brand="Sabor Mío">
                     <div class="inner-carousel-track">
@@ -860,7 +911,7 @@
                 </div>
             </div>
 
-            <div class="kit-card">
+            <div class="kit-card" data-type="Ser Distribuidor (B2B)">
                 <h3 class="kit-card-title"><span>CAMPESINAS</span></h3>
                 <div class="inner-carousel-container" data-brand="Campesinas">
                     <div class="inner-carousel-track">
@@ -906,7 +957,7 @@
                 </div>
             </div>
 
-            <div class="kit-card">
+            <div class="kit-card" data-type="Ser Distribuidor (B2B)">
                 <h3 class="kit-card-title">NANNÁ <span></span></h3>
                 <div class="inner-carousel-container" data-brand="Nanná">
                     <div class="inner-carousel-track">
@@ -951,6 +1002,42 @@
                 </div>
             </div>
         </div>
+
+        <div class="fade-in" style="text-align: center; margin: 60px 0 30px;">
+            <h2 class="section-title" style="margin-bottom: 10px; font-size: clamp(1.8rem, 4vw, 3rem);">KITS MIXTOS <span>DISTRIBUIDOR</span></h2>
+            <p style="color: #AAA; font-size: 1.1rem;">Combina todo el poder de nuestras marcas en un solo envío.</p>
+        </div>
+
+        <div class="grid-3-mixtos fade-in">
+            <div class="kit-card mixto" data-type="Ser Distribuidor (B2B)" style="background-image: url('mix-3.jpg');" data-brand="Paquetes Mixtos" data-kitname="Nivel Crecimiento">
+                <div class="slide-content">
+                    <p style="color: #AAA; font-size: 0.9rem; margin-bottom: 20px;"></p>
+                    <h3 class="kit-card-title" style="position:relative; top:0; margin-bottom:15px;">NIVEL <span>CRECIMIENTO</span></h3>
+                    <ul class="slide-features">
+                        <li><strong>Opción A ($8,736.00):</strong> Delibarras Tradicional + Campesinas Enjambre Choc. + Sabor Mio Empanizador</li>
+                        <li><strong>Opción B ($8,564.80):</strong> Delibarras Yogurt + Nanná Waffle + Campesinas Besos Choc. + Sabor Mio Pan Crujy</li>
+                    </ul>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas mix-btn">Saber más</button>
+                </div>
+            </div>
+
+            <div class="kit-card mixto" data-type="Ser Distribuidor (B2B)" style="background-image: url('mix1.jpg');" data-brand="Paquetes Mixtos" data-kitname="Nivel Distribución">
+                <div class="slide-content">
+                    <p style="color: #AAA; font-size: 0.9rem; margin-bottom: 20px;"></p>
+                    <h3 class="kit-card-title" style="position:relative; top:0; margin-bottom:15px;">NIVEL <span>DISTRIBUCIÓN</span></h3>
+                    <ul class="slide-features">
+                        <li><strong>Opción A ($13,428.00):</strong> Delibarras Tradicional + Campesinas Enjambre Vainilla + Sabor Mio Pan Crujy + Nanná Muffin</li>
+                        <li><strong>Opción B ($12,650.40):</strong> Campesinas Enjambre Choc. + Campesinas Surtipack + Sabor Mio Pan Crujy + Nanná Muffin</li>
+                    </ul>
+                </div>
+                <div class="btn-saber-mas-wrapper">
+                    <button class="btn-saber-mas mix-btn">Saber más</button>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <section class="faq-industrial" id="faq">
@@ -1089,7 +1176,7 @@
                 </div>
                 <div class="pkg-includes-title">¿Qué incluye este paquete?</div>
                 <ul class="pkg-features-list" id="pkg-modal-features"></ul>
-                <button class="btn-modal-interesa" id="pkg-modal-btn-interesa">¡Me interesa!</button>
+                <button class="btn-modal-interesa" id="pkg-modal-btn-interesa" data-type="" data-kit="">¡Me interesa!</button>
             </div>
         </div>
     </div>
@@ -1256,7 +1343,7 @@
         });
 
         // ==========================================
-        // ENVÍO DE FORMULARIO DEL HERO PRINCIPAL
+        // ENVÍO DE FORMULARIO DEL HERO PRINCIPAL A WHATSAPP
         // ==========================================
         document.getElementById('heroContactForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1265,16 +1352,23 @@
             btn.style.pointerEvents = 'none';
 
             const interes = document.getElementById('hero-interes').value;
+            const paquete = document.getElementById('hero-paquete').value;
             const nombre = document.getElementById('hero-nombre').value;
             const apellidos = document.getElementById('hero-apellidos').value;
             const email = document.getElementById('hero-email').value;
             const telefono = document.getElementById('hero-telefono').value;
-            const suscribir = document.getElementById('hero-marketing').checked ? 'Sí (Aceptó Suscripción)' : 'No (No suscribir)';
+            const suscribir = document.getElementById('hero-marketing').checked ? 'Sí' : 'No';
 
-            const asunto = encodeURIComponent("Cotización de Pedido - Landing Distribuidores");
-            const cuerpo = encodeURIComponent(`Hola, tenemos un nuevo prospecto desde la cabecera principal:\n\nNombre: ${nombre} ${apellidos}\nCorreo: ${email}\nTeléfono: ${telefono}\nModelo de Negocio/Interés: ${interes}\nSuscripción a Marketing: ${suscribir}`);
+            const mensaje = `¡Hola! Vengo de la página web y me interesa una cotización.\n\n` +
+                            `Nombre: ${nombre} ${apellidos}\n` +
+                            `Teléfono: ${telefono}\n` +
+                            `Email: ${email}\n\n` +
+                            `Modelo de negocio: ${interes}\n` +
+                            `Paquete de interés: ${paquete}\n` +
+                            `Suscripción a Marketing: ${suscribir}`;
 
-            window.location.href = `mailto:marketing@mangobc.com?subject=${asunto}&body=${cuerpo}`;
+            const urlWhatsapp = `https://api.whatsapp.com/send?phone=5214433327430&text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsapp, '_blank');
 
             setTimeout(() => {
                 btn.innerText = '¡SOLICITUD ENVIADA!';
@@ -1287,6 +1381,7 @@
                     btn.style.background = 'var(--mango)';
                     btn.style.color = 'var(--dark)';
                     btn.style.pointerEvents = 'auto';
+                    document.getElementById('hero-paquete').value = '';
                 }, 3000);
             }, 1500);
         });
@@ -1361,6 +1456,7 @@
             document.getElementById('pkg-modal-img').style.backgroundImage = item.bgImage;
             
             pkgModalBtnInteresa.dataset.kit = `${item.brand} - ${item.category}`;
+            pkgModalBtnInteresa.dataset.type = item.type;
             
             if (item.syncFunction) { item.syncFunction(pkgCurrentIndex); }
         }
@@ -1394,8 +1490,8 @@
         
         pkgCloseModalBtn.addEventListener('click', closePkgModal);
 
-        // Inicializar los Carruseles de las tarjetas
-        document.querySelectorAll('.kit-card').forEach(card => {
+        // Inicializar los Carruseles de las tarjetas 4 marcas (Básicas)
+        document.querySelectorAll('.kit-card:not(.mixto)').forEach(card => {
             const container = card.querySelector('.inner-carousel-container');
             if(!container) return; 
             
@@ -1404,6 +1500,7 @@
             const btnPrev = card.querySelector('.btn-prev');
             const btnNext = card.querySelector('.btn-next');
             const btnSaberMas = card.querySelector('.btn-saber-mas');
+            const cardType = card.dataset.type || '';
             let cardIndex = 0;
             
             const syncCardCarousel = (newIndex) => { 
@@ -1422,21 +1519,54 @@
                     pieces: slide.querySelector('.slide-pieces')?.innerText,
                     features: slide.querySelector('.slide-features')?.innerHTML,
                     bgImage: slide.style.backgroundImage,
+                    type: cardType,
                     syncFunction: syncCardCarousel
                 }));
                 openPkgModal(items, cardIndex);
             });
         });
 
-        // Botón "Me Interesa" - Construcción dinámica de mensaje para WhatsApp
+        // Inicializar botones "Saber Más" de los Kits Mixtos
+        document.querySelectorAll('.grid-3-mixtos').forEach(grid => {
+            const mixCardsInGrid = Array.from(grid.querySelectorAll('.kit-card.mixto'));
+            mixCardsInGrid.forEach((card, idx) => {
+                card.querySelector('.btn-saber-mas').addEventListener('click', () => {
+                    const items = mixCardsInGrid.map(c => ({
+                        brand: c.dataset.brand,
+                        category: c.dataset.kitname,
+                        price: null, 
+                        pieces: null, 
+                        features: c.querySelector('.slide-features')?.innerHTML,
+                        bgImage: c.style.backgroundImage,
+                        type: c.dataset.type || ''
+                    }));
+                    openPkgModal(items, idx);
+                });
+            });
+        });
+
+        // ==========================================
+        // BOTÓN "¡ME INTERESA!" - PRELLENAR FORM Y HACER SCROLL
+        // ==========================================
         pkgModalBtnInteresa.addEventListener('click', () => {
             closePkgModal(); 
-            const kitSeleccionado = pkgModalBtnInteresa.dataset.kit;
-            const mensajeBase = "Hola, estoy interesado en sus productos, ¿me pueden dar información?, me interesa el paquete: " + kitSeleccionado;
             
-            // Usamos el número corporativo y encodeURIComponent para que los espacios se pasen correctamente
-            const urlWhatsapp = `https://api.whatsapp.com/send?phone=5214433327430&text=${encodeURIComponent(mensajeBase)}`;
-            window.open(urlWhatsapp, '_blank');
+            // Llenar formulario del Hero
+            const inputPaquete = document.getElementById('hero-paquete');
+            const selectInteres = document.getElementById('hero-interes');
+            
+            if (pkgModalBtnInteresa.dataset.type) {
+                selectInteres.value = pkgModalBtnInteresa.dataset.type;
+            }
+            inputPaquete.value = pkgModalBtnInteresa.dataset.kit;
+            
+            // Hacer scroll hacia arriba
+            document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' });
+            
+            // Poner el foco en el campo Nombre después de un pequeño retraso
+            setTimeout(() => {
+                document.getElementById('hero-nombre').focus();
+            }, 600); 
         });
     </script>
 </body>
