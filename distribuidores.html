@@ -1428,10 +1428,15 @@
             });
         });
 
-        // Botón "Me Interesa" redirige al enlace corto de WhatsApp
+        // Botón "Me Interesa" - Construcción dinámica de mensaje para WhatsApp
         pkgModalBtnInteresa.addEventListener('click', () => {
             closePkgModal(); 
-            window.open('https://wa.link/if3nve', '_blank');
+            const kitSeleccionado = pkgModalBtnInteresa.dataset.kit;
+            const mensajeBase = "Hola, estoy interesado en sus productos, ¿me pueden dar información?, me interesa el paquete: " + kitSeleccionado;
+            
+            // Usamos el número corporativo y encodeURIComponent para que los espacios se pasen correctamente
+            const urlWhatsapp = `https://api.whatsapp.com/send?phone=5214433327430&text=${encodeURIComponent(mensajeBase)}`;
+            window.open(urlWhatsapp, '_blank');
         });
     </script>
 </body>
