@@ -425,6 +425,128 @@
         .modal-success { display: none; text-align: center; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
         .modal-success.active { display: block; opacity: 1; transform: translateY(0); }
         .success-icon { font-size: 3rem; color: var(--mango); margin-bottom: 15px; }
+        /* ============================================================
+   OPTIMIZACIÓN PARA PANTALLAS 4K Y ULTRA-WIDE (> 2000px)
+   No afecta a pantallas Full HD (1920x1080)
+   ============================================================ */
+@media (min-width: 2000px) {
+    /* Ampliación de contenedores maestros */
+    .hero-container, 
+    .grid-beneficios, 
+    .timeline, 
+    .grid-4-marcas, 
+    .grid-3-mixtos, 
+    .faq-accordion, 
+    .footer-grid {
+        max-width: 1800px; /* Expandimos de 1400px a 1800px */
+    }
+
+    /* Hero Section - Escala de impacto */
+    .hero-title {
+        font-size: 6.5rem; /* Un título más imponente */
+    }
+    .hero-subtitle {
+        font-size: 1.5rem;
+        max-width: 900px;
+    }
+
+    /* Formulario del Hero - Más cómodo en 4K */
+    .hero-form-card {
+        max-width: 650px;
+        padding: 50px;
+    }
+    .hero-form-header h2 {
+        font-size: 2.2rem;
+    }
+    .input-group label {
+        font-size: 0.9rem;
+    }
+    .input-group input, .input-group select {
+        padding: 18px;
+        font-size: 1rem;
+    }
+
+    /* Estadísticas - Números más grandes */
+    .stats-grid {
+        max-width: 1400px;
+        margin-top: -180px; /* Ajuste de la superposición */
+        padding: 60px;
+    }
+    .stat-number {
+        font-size: 5rem;
+    }
+    .stat-label {
+        font-size: 1rem;
+    }
+
+    /* Beneficios y Proceso */
+    .floating-card h3 {
+        font-size: 1.6rem;
+    }
+    .floating-card p {
+        font-size: 1.1rem;
+    }
+    .icon-circle {
+        width: 180px;
+        height: 180px;
+    }
+    .step h4 {
+        font-size: 1.3rem;
+    }
+
+    /* Tarjetas de Kits (Carruseles) */
+    .kit-card {
+        min-height: 650px; /* Más altura para llenar el espacio vertical */
+    }
+    .kit-card-title {
+        font-size: 2.2rem;
+        top: 35px;
+    }
+    .slide-name {
+        font-size: 2.2rem;
+    }
+    .slide-price-badge {
+        font-size: 1.6rem;
+        padding: 10px 25px;
+    }
+    .slide-pieces {
+        font-size: 1.2rem;
+    }
+
+    /* FAQ - Acordeones más amplios */
+    .accordion-header h3 {
+        font-size: 1.1rem;
+    }
+    .accordion-content p {
+        font-size: 1.1rem;
+    }
+
+    /* Modal de Paquetes - Más grande en 4K */
+    .package-modal-card {
+        max-width: 600px;
+    }
+    .pkg-header-img {
+        height: 400px;
+    }
+    .pkg-title {
+        font-size: 2.5rem;
+    }
+
+    /* Navbar - Centrado y ampliado */
+    nav {
+        max-width: 1800px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px 50px;
+    }
+    .nav-links a {
+        font-size: 1rem;
+    }
+    .nav-cta {
+        padding: 12px 30px;
+        font-size: 0.9rem !important;
+    }
+}
     </style>
 </head>
 <body>
