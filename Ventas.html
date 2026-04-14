@@ -223,6 +223,84 @@
             .kit-card { min-height: 450px; }
             .modal-body { padding: 20px 25px 40px 25px; }
         }
+        /* --- OPTIMIZACIÓN PARA PANTALLAS ULTRA-WIDE (> 2000px) --- */
+@media (min-width: 2000px) {
+    /* Ampliamos el contenedor principal para que no quede mucho aire a los lados */
+    .sales-container, 
+    .grid-4-marcas, 
+    .footer-grid {
+        max-width: 1800px;
+    }
+
+    /* Ajuste del Hero para pantallas gigantes */
+    .sales-copy h1 {
+        font-size: 5.5rem; /* Un salto visual para que impacte en 4K */
+    }
+
+    .sales-copy p {
+        font-size: 1.4rem;
+        max-width: 800px; /* Permitimos que el texto respire más */
+    }
+
+    /* El formulario se vuelve un poco más robusto */
+    .lead-form-card {
+        max-width: 650px;
+        padding: 60px;
+    }
+
+    .form-header h2 {
+        font-size: 2.2rem;
+    }
+
+    /* Las tarjetas de los kits ganan presencia */
+    .kit-card {
+        min-height: 650px; /* Más altas para lucir las fotos */
+    }
+
+    .kit-card-title {
+        font-size: 2rem;
+        top: 35px;
+    }
+
+    .slide-name {
+        font-size: 2.2rem;
+    }
+
+    .slide-price-badge {
+        font-size: 1.6rem;
+        padding: 10px 25px;
+    }
+
+    /* Ajuste para los kits mixtos (Nivel Entrada/Crecimiento) */
+    .grid-3-mixtos {
+        max-width: 1600px;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 500px)); 
+        gap: 50px;
+    }
+
+    .kit-card.mixto .kit-card-title {
+        font-size: 2.2rem;
+    }
+
+    /* Botones de navegación de carrusel más grandes y visibles */
+    .arrow-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    /* Ajuste de navegación */
+    nav {
+        max-width: 1800px;
+        left: 50%;
+        transform: translateX(-50%); /* Centrado perfecto en pantallas gigantes */
+        padding: 20px 50px;
+    }
+    
+    .nav-links a {
+        font-size: 1rem;
+    }
+}
     </style>
 </head>
 <body>
