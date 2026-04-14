@@ -312,7 +312,9 @@
         #tarjeta-mapa .bento-back.map-back { padding: 0; background-color: var(--dark); border: 2px solid var(--mango); display: flex; justify-content: center; align-items: center; overflow: hidden; }
         #tarjeta-mapa .map-img { position: relative; width: 100%; height: 100%; object-fit: contain !important; opacity: 1 !important; transform: none !important; transition: none !important; }
 
-        /* CARRUSEL DE MARCAS CORREGIDO Y ADAPTADO A FONDO OSCURO */
+        /* =========================================================
+           CARRUSEL DE MARCAS OPTIMIZADO (GPU ACCELERATED)
+           ========================================================= */
         .logos-clientes-wrapper {
             margin-top: 100px;
             width: 100%;
@@ -328,6 +330,7 @@
             align-items: center;
             -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            transform: translateZ(0); /* Aísla la capa para mejor rendimiento de la máscara */
         }
         .logos-track {
             display: flex;
@@ -335,6 +338,12 @@
             width: max-content;
             animation: scrollLogos 35s linear infinite;
             will-change: transform;
+            /* TRUCOS DE ACELERACIÓN POR HARDWARE (GPU) */
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
         .client-logo {
             width: 120px;
@@ -343,14 +352,21 @@
             margin: 0 30px;
             filter: grayscale(100%) brightness(200%) opacity(0.5); /* Para fondo oscuro */
             transition: filter 0.3s, transform 0.3s;
+            
+            /* Prevenir saltos de antialiasing en los logos individuales */
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: filter, transform;
         }
         .client-logo:hover {
             filter: grayscale(0%) brightness(100%) opacity(1);
-            transform: scale(1.1);
+            transform: scale(1.1) translate3d(0, 0, 0);
         }
         @keyframes scrollLogos {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-25%); } 
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-25%, 0, 0); } 
         }
 
         /* 3. ¿QUÉ HACEMOS? (METODOLOGÍA) -> LIGHT */
@@ -477,7 +493,9 @@
         
         .marquee-content { 
             display: inline-block; font-family: 'Montserrat'; font-weight: 900; 
-            font-size: 15vw; animation: marquee 25s linear infinite; 
+            /* Tope seguro para evitar deformación en pantallas ultra wide */
+            font-size: clamp(100px, 15vw, 250px); 
+            animation: marquee 25s linear infinite; 
             color: var(--dark); 
             will-change: transform;
             transform: translateZ(0);
@@ -854,7 +872,7 @@
         .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 60px; padding-top: 30px; color: #666; font-size: 0.8rem; }
 
         /* =========================================================
-           AJUSTES RESPONSIVOS
+           AJUSTES RESPONSIVOS ESTÁNDAR
            ========================================================= */
         @media (max-width: 1440px) {
             section { padding: 80px 5%; }
@@ -1022,7 +1040,7 @@
         <div class="que-es-grid">
             <div class="narrativa-box reveal">
                 <h2 class="section-title" style="line-height: 1.05;">INFRAESTRUCTURA<br><span>Y EXPERIENCIA QUE RESPALDAN</span></h2>
-                <p>Más de <strong>500 distribuidores</strong> y <strong>150 retailers</strong> ya confiaron en nosotros.</p>
+                <p>Más de <strong><span class="bento-counter" data-target="500">0</span> distribuidores</strong> y <strong><span class="bento-counter" data-target="150">0</span> retailers</strong> ya confiaron en nosotros.</p>
             </div>
             
             <div class="stats-bento reveal delay-1">
@@ -1030,7 +1048,7 @@
                 <div class="bento-flip-card">
                     <div class="bento-inner">
                         <div class="bento-front">
-                            <h3>+100k</h3>
+                            <h3>+<span class="bento-counter" data-target="100">0</span>k</h3>
                             <p>Puntos de venta</p>
                             <div class="flip-hint-bento">↺</div>
                         </div>
@@ -1046,7 +1064,7 @@
                 <div class="bento-flip-card">
                     <div class="bento-inner">
                         <div class="bento-front">
-                            <h3>+400</h3>
+                            <h3>+<span class="bento-counter" data-target="400">0</span></h3>
                             <p>Rutas de distribución</p>
                             <div class="flip-hint-bento">↺</div>
                         </div>
@@ -1527,13 +1545,49 @@
             });
         });
 
+        // =========================================================
+        // LÓGICA DE CONTADORES ANIMADOS
+        // =========================================================
+        let countersAnimated = false;
+        function startCounters() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+            const counters = document.querySelectorAll('.bento-counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2 segundos
+                const speed = target / (duration / 16); 
+                
+                const updateCount = () => {
+                    const current = +counter.innerText;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current + speed);
+                        setTimeout(updateCount, 16);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // =========================================================
+        // REVEAL ANIMATIONS Y DETECCIÓN PARA CONTADORES
+        // =========================================================
         const revealElements = document.querySelectorAll('.reveal');
         const revealOptions = { threshold: 0.05, rootMargin: "0px 0px 50px 0px" };
         
         const revealObserver = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
+                
                 entry.target.classList.add('active');
+                
+                // Si la sección que entra en pantalla tiene los contadores, arranca la animación
+                if (entry.target.querySelector('.bento-counter') || entry.target.classList.contains('stats-bento')) {
+                    startCounters();
+                }
+
                 observer.unobserve(entry.target);
             });
         }, revealOptions);
