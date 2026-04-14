@@ -363,6 +363,105 @@
             .box-1, .box-2, .box-3, .box-4 { grid-column: 1 / 2; grid-row: auto; }
             .pricing-card, .test-card, .benefit-card { max-width: 100%; }
         }
+        /* ============================================================
+   OPTIMIZACIÓN PARA PANTALLAS ULTRA-WIDE (> 2000px) 
+   No afecta a tu laptop 17.3" (1920x1080)
+   ============================================================ */
+@media (min-width: 2000px) {
+    /* Ampliamos el contenedor máximo de las secciones bento y de información */
+    .bento-section, .info-block, .benefits-section, .pricing-section, .testimonials-section, .form-wrapper, .cta-box {
+        max-width: 1900px !important;
+    }
+
+    /* --- HERO: EL ABANICO --- */
+    /* Hacemos que las barras se dispersen más en el eje X para aprovechar el ancho */
+    .fan-container {
+        max-width: 1400px;
+        height: 60vh;
+    }
+
+    .bar {
+        height: 50vh; /* Barras más grandes */
+        max-height: 600px;
+    }
+
+    /* Ajustamos los offsets de las barras para que no queden amontonadas al centro */
+    .bar-1 { --tx: -350px; --ty: 40px; }
+    .bar-2 { --tx: -150px; --ty: 15px; }
+    .bar-3 { --tx: 50px; --ty: -30px; }
+    .bar-4 { --tx: 300px; --ty: 50px; }
+
+    /* Al hacer hover, la dispersión es mayor */
+    .fan-container:hover .bar-1 { --tx: -420px; --ty: 60px; }
+    .fan-container:hover .bar-2 { --tx: -200px; --ty: 0px; }
+    .fan-container:hover .bar-3 { --tx: 50px; --ty: -60px; }
+    .fan-container:hover .bar-4 { --tx: 380px; --ty: 70px; }
+
+    /* --- TIPOGRAFÍA --- */
+    .hero-title {
+        font-size: 8rem; /* Título masivo */
+    }
+    .hero-bg-text {
+        font-size: 15vw;
+    }
+    .marquee-text {
+        font-size: 2.2rem;
+    }
+
+    /* --- BENTO GRID --- */
+    .bento-grid {
+        gap: 40px; /* Más espacio entre cajas */
+    }
+    .bento-img-container {
+        height: 55vh; /* Video de fondo más alto */
+    }
+    .bento-stat h4 {
+        font-size: 5rem;
+    }
+    .bento-stat span {
+        font-size: 1.2rem;
+    }
+
+    /* --- ILUSTRACIONES CSS --- */
+    /* La pila de cajas se escala para no verse minúscula */
+    .css-box-stack {
+        transform: scale(1.6);
+        margin: 100px 0;
+    }
+
+    /* El ticket nutricional crece para ser legible en 4K */
+    .nutritional-ticket {
+        max-width: 500px;
+        padding: 50px;
+    }
+    .ticket-row {
+        font-size: 1.2rem;
+        padding: 12px 0;
+    }
+
+    /* --- TARJETAS DE PRECIO (KITS) --- */
+    .pricing-card {
+        padding: 60px 40px;
+    }
+    .pricing-card .price {
+        font-size: 3.5rem;
+    }
+    .pricing-card ul li {
+        font-size: 1.15rem;
+    }
+
+    /* --- FORMULARIO --- */
+    .form-container {
+        padding: 60px;
+    }
+    .custom-form label {
+        font-size: 1rem;
+    }
+    .custom-form input, .custom-form select {
+        padding: 18px;
+        font-size: 1.1rem;
+    }
+}
     </style>
 </head>
 <body>
